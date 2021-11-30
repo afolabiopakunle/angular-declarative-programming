@@ -1,10 +1,9 @@
 <div class="container">
   <h2>Registration</h2>
-
-  <input class="form-control" debounce=100 type="search">
+  <form >
+  <input class="form-control" formControlName="searchField" debounce='100' type="search">
   <ul class="list-group">
-  <li *ngfor="let client of filteredClients$ | async" class="list-group-item"></li>
+  <li *ngFor="let client of filteredClients$ | async" class="list-group-item"> {{client.firstName}} {{client.lastName}}</li>
   </ul>
-<form>
 </form>
 </div>

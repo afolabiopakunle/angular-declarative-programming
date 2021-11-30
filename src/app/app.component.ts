@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { combineLatest, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -12,6 +12,7 @@ import { ClientService } from './client.service';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
+  form: FormGroup;
   searchField: FormControl;
   filteredClients$: Observable<any>;
 
