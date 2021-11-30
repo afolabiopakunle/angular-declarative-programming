@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ClientService {
 private client$ = new BehaviorSubject<any>([
   {firstName: 'Arya', lastName: 'Stark'},
