@@ -3,7 +3,7 @@
 
   <input class="form-control" debounce=100 type="search">
   <ul class="list-group">
-  <li class="list-group-item">afolabi</li>
+  <li *ngfor="let client of filteredClients$ | async" class="list-group-item"></li>
   </ul>
 <form>
 </form>

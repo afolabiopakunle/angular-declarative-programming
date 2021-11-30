@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { Observable } from 'rxjs';
-import { startWith } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 import { ClientService } from './client.service';
 
@@ -20,11 +20,20 @@ export class AppComponent  {
   }
 
   ngOnInit() {
-    const client$ = this.searchField.valueChanges
-    .pipe(
+    const client$ = this.clientService.getClients();
+    const searchTerm$ = this.searchField.valueChanges.pipe(
       startWith(this.searchField.value)
+    )
+    this.filteredClients$ = combineLatest([client$, searchTerm$])
+    .pipe(
+      map(([clients, searchTerm]) => {
+        return clients.filter(
+          client => searchTerm === '' || 
+          client.firstName.toLowerCase().includes(searchTerm.toLowerCase()) || client.lastName.toLowerCase().toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      })
     )
   }
 
-  
+
 }
