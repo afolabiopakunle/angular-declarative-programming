@@ -16,7 +16,7 @@ export class AppComponent  {
   filteredClients$: Observable<any>;
 
   constructor(private clientService: ClientService) {
-    
+    this.searchField = new FormControl('')
   }
 
   ngOnInit() {
