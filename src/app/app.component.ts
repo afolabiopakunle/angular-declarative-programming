@@ -1,4 +1,10 @@
-import { Component, VERSION } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
+import { Observable } from 'rxjs';
+import { startWith } from 'rxjs/operators';
+
+import { ClientService } from './client.service';
 
 @Component({
   selector: 'my-app',
@@ -6,5 +12,19 @@ import { Component, VERSION } from '@angular/core';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
-  name = 'Angular ' + VERSION.major;
+  searchField: FormControl;
+  filteredClients$: Observable<any>;
+
+  constructor(private clientService: ClientService) {
+    
+  }
+
+  ngOnInit() {
+    const client$ = this.searchField.valueChanges
+    .pipe(
+      startWith(this.searchField.value)
+    )
+  }
+
+  
 }
